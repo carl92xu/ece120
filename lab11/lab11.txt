@@ -1,0 +1,25 @@
+Question 1: Describe the errors that occur when trying to assemble lab11.asm. Identify the cause of each error.
+
+Line 14: .ORIG is omitted before first line of instruction
+Line 16: since .ORIG is omitted, this instruction appears before .ORIG
+Line 17: x3010 excesses the maxmimum range of a 9-bit offset
+Line 19: an extra comma between the first two oprands
+Line 30: x300F excesses the maxmimum range of a 9-bit offset
+Line 32: BRANCH instuction condition needs to be in nzp order
+Line 35: xxxx is just a placeholder, hasn't been filled in with valid number
+Line 43: after all instructions, .END is omitted
+
+
+
+Question 2: For each label in the code, write down the corresponding memory location. 
+
+OUTERLOOP:	x3005
+INNERLOOP:	x3009
+INPUT:		x3016
+RESULT:		x3019
+
+
+
+Question 3: Between using labels and explicit memory locations/offsets, which one makes the most sense, and why?
+
+Using labels makes much more sense, since programmer doesn't need to count memory offsets, and doesn't need to change the offset manually when modifying the program.

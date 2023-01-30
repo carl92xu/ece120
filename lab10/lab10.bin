@@ -1,0 +1,27 @@
+; This is the file you will use for the lab assignment
+; Make sure to comment your code properly and don't exceed 
+; the line limitation for this assignment.  Good luck!
+
+0011 0001 0000 0000 ; x3100 - starting address of the program
+
+; The program description and code starts here
+; Carl Xu
+; zx32
+; Nov 12, 2020
+; Loop through all 10 values, starting at memory location x3132, and add all positive number up in R5. 
+; R0: load each number.
+; R3: memory location to load the next value. 
+; R4: counter. 
+; R5: sum of all positive numbers. 
+
+1110 011 000110001	; R3 <- PC + x31	Set R3 to x3132  
+0101 100 100 1 00000	; R4 <- R4 AND 0	Set R4 to 0
+0101 101 101 1 00000	; R5 <- R5 AND 0	Set R5 to 0
+0110 000 011 000000	; R0 <- m[R3]		Load the number stored at the location indicated by R3 to R0
+0000 110 000000001	; BRnz PC = PC + 1	If the value loaded is negative or zero, Skip 1 step
+0001 101 101 000 000	; R5 <- R5 + R0		Add the value loaded to R5
+0001 011 011 1 00001	; R3 <- R3 + 1		Increment R3 by 1
+0001 100 100 1 00001	; R4 <- R4 + 1		Increment R4 by 1
+0001 100 100 1 10101	; R4 <- R4 - 11		Check if R4 reached 11	
+0000 100 111111001	; BRn PC <- PC - 7	If R1 hasn't reached 11, Go back 6 steps, Enter a new loop
+1111 0000 00100101	; TRAP x25		Halt
